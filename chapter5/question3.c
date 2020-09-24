@@ -29,7 +29,9 @@ int main(int arg, char *argv[]) {
         if (process_id < 0) {
                 fprintf(stderr, "fork error: %s\n", strerror(errno));
                 close_status = close(file_descriptor);
-                if (close_status == -1) fprintf(stderr, "error closing the file\n");
+                if (close_status == -1) {
+                        fprintf(stderr, "error closing the file\n");
+                }
                 exit(1);
         } else if (process_id == 0) { /* Child */
                 printf("child (pid:%d): file descriptor = %d\n", (int) getpid(), file_descriptor);
@@ -39,7 +41,9 @@ int main(int arg, char *argv[]) {
                 bytes_written = write(file_descriptor, buffer, nbytes);
 
                 close_status = close(file_descriptor);
-                if (close_status == -1) printf("child (pid:%d): error closing the file\n", (int) getpid());
+                if (close_status == -1) {
+                        printf("child (pid:%d): error closing the file\n", (int) getpid());
+                }
                 exit(0);
         }
 
@@ -52,6 +56,8 @@ int main(int arg, char *argv[]) {
         bytes_written = write(file_descriptor, buffer, nbytes);
                   
         close_status = close(file_descriptor);
-        if (close_status == -1) printf("parent (pid:%d): error closing the file\n", (int) getpid());
+        if (close_status == -1) {
+                printf("parent (pid:%d): error closing the file\n", (int) getpid());
+        }
         exit(0);
 }
