@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(int argc, char *argv[]) {
 
@@ -12,6 +13,14 @@ int main(int argc, char *argv[]) {
         int y[10];
         printf("sizeof(y) = %zu (size of an array of 10 ints)\n", sizeof(y));
 
+        // How to dinamycally allocate memory for strings
+        char *src = "hola";
+        char *dst = (char *) malloc(strlen(src) + 1);
+
+        strcpy(dst, src); // copy the contents of src to dst
+        printf("dst: %s\n", dst);
+
+        free(dst);
         
         return 0;
 }
