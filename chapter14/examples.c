@@ -6,6 +6,7 @@ int main(int argc, char *argv[]) {
         // Array of 10 integers allocated dynamically
         int *x = (int *) malloc(10 * sizeof(int));
         printf("sizeof(x) = %zu (size of a pointer to an int)\n", sizeof(x));
+        free(x);
 
         // Array of 10 integers allocated statically
         int y[10];
